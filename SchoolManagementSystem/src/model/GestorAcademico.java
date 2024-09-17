@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -49,7 +51,7 @@ public class GestorAcademico {
         return inscripciones.get(curso);
     }
 
-    
+
 
 
 
