@@ -12,6 +12,18 @@ public class Estudiante {
         graduado
     }
 
+    public Estudiante() {
+
+    }
+
+    public Estudiante(String id, String nombre, String apellido, String fechaDeNacimiento, Estado estado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+        this.estado = estado;
+    }
+
     public String getId() {
         return id;
     }
