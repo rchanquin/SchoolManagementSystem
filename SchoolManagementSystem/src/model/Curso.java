@@ -1,7 +1,7 @@
 package model;
 
 public class Curso {
-    private int id;
+    private int idCurso;
     private String nombre;
     private String descripcion;
     private int numeroCreditos;
@@ -10,20 +10,20 @@ public class Curso {
     public Curso() {
     }
 
-    public Curso(int id, String nombre, String descripcion, int numeroCreditos, double version) {
-        this.id = id;
+    public Curso(int idCurso, String nombre, String descripcion, int numeroCreditos, double version) {
+        this.idCurso = idCurso;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.numeroCreditos = numeroCreditos;
         this.version = version;
     }
 
-    public int getId() {
-        return id;
+    public int getIdCurso() {
+        return idCurso;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
     }
 
     public String getNombre() {
