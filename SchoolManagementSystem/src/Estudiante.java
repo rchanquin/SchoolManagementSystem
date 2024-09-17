@@ -7,7 +7,7 @@ public class Estudiante {
 
 
     public enum Estado {
-       matriculado,
+        matriculado,
         inactivo,
         graduado
     }
