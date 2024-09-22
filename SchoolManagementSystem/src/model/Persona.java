@@ -17,7 +17,7 @@ public class Persona {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

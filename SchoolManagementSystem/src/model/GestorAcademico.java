@@ -1,9 +1,10 @@
 package model;
 
 import Interface.ServiciosAcademicos;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import exceptions.EstudianteYaInscritoException;
+import exceptions.EstudianteNoInscritoEnCursoException;
 
 public class GestorAcademico implements ServiciosAcademicos {
     private ArrayList<Estudiante> estudiantes;
@@ -19,23 +20,22 @@ public class GestorAcademico implements ServiciosAcademicos {
     @Override
     public void matricularEstudiante(Estudiante estudiante) {
         for (Estudiante e : estudiantes) {
-            if (e.getId().equals(estudiante.getId())) {  // Corregido uso de equals para String
-                // Estudiante ya está matriculado
-                return;
+            if (e.getId() == estudiante.getId()) {  // Comparar IDs como int
+                return;  // El estudiante ya está matriculado
             }
         }
-        estudiantes.add(estudiante);
+        estudiantes.add(estudiante);  // Agregar nuevo estudiante
     }
 
     @Override
     public void agregarCurso(Curso curso) {
         for (Curso c : cursos) {
-            if (c.getIdCurso() == curso.getIdCurso()) {
-                return;  // Curso ya está registrado
+            if (c.getIdCurso() == curso.getIdCurso()) {  // Comparar IDs de cursos
+                return;  // El curso ya existe
             }
         }
-        cursos.add(curso);
-        inscripciones.put(curso, new ArrayList<Estudiante>());
+        cursos.add(curso);  // Agregar nuevo curso
+        inscripciones.put(curso, new ArrayList<Estudiante>());  // Inicializar lista de inscritos
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GestorAcademico implements ServiciosAcademicos {
         if (inscritos.contains(estudiante)) {
             throw new EstudianteYaInscritoException("El estudiante ya está inscrito en este curso");
         }
-        inscritos.add(estudiante);
+        inscritos.add(estudiante);  // Inscribir estudiante
     }
 
     @Override
@@ -60,30 +60,33 @@ public class GestorAcademico implements ServiciosAcademicos {
         }
 
         ArrayList<Estudiante> inscritos = inscripciones.get(curso);
-        Estudiante estudiante = encontrarEstudiantePorId(idEstudiante);
+        Estudiante estudiante = encontrarEstudiantePorId(idEstudiante);  // Buscar estudiante por ID
         if (estudiante == null || !inscritos.contains(estudiante)) {
             throw new EstudianteNoInscritoEnCursoException("El estudiante no está inscrito en este curso");
         }
-        inscritos.remove(estudiante);
+        inscritos.remove(estudiante);  // Eliminar estudiante de la lista
     }
 
-    // Método privado para encontrar un curso por su ID
+    // Obtener estudiantes inscritos en un curso
+    public ArrayList<Estudiante> getEstudiantesInscritos(Curso curso) {
+        return inscripciones.get(curso);
+    }
+
     private Curso encontrarCursoPorId(int idCurso) {
         for (Curso c : cursos) {
             if (c.getIdCurso() == idCurso) {
-                return c;
+                return c;  // Devolver curso si se encuentra
             }
         }
-        return null;
+        return null;  // No se encontró el curso
     }
 
-    // Método privado para encontrar un estudiante por su ID (convertir el ID a String para comparar)
     private Estudiante encontrarEstudiantePorId(int id) {
         for (Estudiante e : estudiantes) {
-            if (Integer.parseInt(e.getId()) == id) {
-                return e;
+            if (e.getId() == id) {  // Comparar IDs como int
+                return e;  // Devolver estudiante si se encuentra
             }
         }
-        return null;
+        return null;  // No se encontró el estudiante
     }
 }

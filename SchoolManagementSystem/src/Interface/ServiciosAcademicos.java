@@ -2,8 +2,8 @@ package Interface;
 
 import model.Curso;
 import model.Estudiante;
-import model.EstudianteYaInscritoException;
-import model.EstudianteNoInscritoEnCursoException;
+import exceptions.EstudianteYaInscritoException;
+import exceptions.EstudianteNoInscritoEnCursoException;
 
 public interface ServiciosAcademicos {
     void matricularEstudiante(Estudiante estudiante);

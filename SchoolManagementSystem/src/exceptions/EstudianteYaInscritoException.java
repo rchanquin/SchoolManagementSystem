@@ -1,4 +1,4 @@
-package model;
+package exceptions;
 
 public class EstudianteYaInscritoException extends RuntimeException {
     public EstudianteYaInscritoException(String message) {
